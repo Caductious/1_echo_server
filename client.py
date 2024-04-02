@@ -10,9 +10,13 @@ except ConnectionRefusedError:
     print('Ошибка подключения')
 while True:
     msg = input("Введите строку:")
-    if msg == '':
-        print('Была подана пустая строка, завершение работы')
-        sock.send("ClientShutsDownNow".encode())
+    if msg == 'exit':
+        print('Была подана команда, завершение работы')
+        sock.send(msg.encode())
+        break
+    if msg == 'shutdown now':
+        print('Была подана команда, Выключения сервера')
+        sock.send(msg.encode())
         break
     sock.send(msg.encode())
     print(f"Сообщение {msg} отправлено серверу")
