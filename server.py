@@ -1,23 +1,24 @@
 import socket
 
-port=9090
+port=9075
 sock = socket.socket()
 sock.bind(('', port))
-print("Server is starting")
+print("Сервер запущен")
 sock.listen(0)
-print("Port",port,"is listing")
+print("Порт",port,"работяга")
 conn, addr = sock.accept()
-print("Client is accepted")
-print("Client adress:",addr[0])
-print("Client port:",addr[1])
+print("Клиент подключен")
+print("Адрес клиента:",addr[0])
+print("Порт клиента:",addr[1])
 
-msg = ''
 
 while True:
+	msg = ''
 	data = conn.recv(1024)
 	if not data:
-            print("All data is accepted")
-            break
+			print(" Coобщение принято")
+			msg=''
+			break
 	msg += data.decode()
 	conn.send(msg.upper().encode())
 
